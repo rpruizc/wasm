@@ -1,5 +1,10 @@
 (module
+  (global $WHITE i32 (i32.const 2))
+  (global $BLACK i32 (i32.const 1))
+  (global $CROWN i32 (i32.const 4))
   (memory $mem 1)
+  
+  ;; First part of setting the checkers board
   (func $indexForPosition(param $x i32)(param $y i32)(result i32)
     (i32.add
       (i32.mul
@@ -22,6 +27,7 @@
   (func $isCrowned(param $piece i32)(result i32)
     (i32.eq
       (i32.and (get_local $piece)(get_global $CROWN))
+      (get_global $CROWN)
     )
   )
 
@@ -29,6 +35,7 @@
   (func $isWhite(param $piece i32)(result i32)
     (i32.eq
       (i32.and (get_local $piece)(get_global $WHITE))
+      (get_global $WHITE)
     )
   )
 
@@ -36,6 +43,7 @@
   (func $isBlack(param $piece i32)(result i32)
     (i32.eq
       (i32.and (get_local $piece)(get_global $BLACK))
+      (get_global $BLACK)
     )
   )
 
